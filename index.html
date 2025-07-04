@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Steganography Tool </title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Steganography Tool</h1>
+            <p class="subtitle">Hide and extract secret messages within image files</p>
+        </header>
+
+        <div class="main-grid">
+            <div class="left-panel">
+                <!-- Image Upload Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-upload"></i>
+                            Upload Image
+                        </h3>
+                        <p class="card-description">Select an image file to work with</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="upload-area" id="uploadArea">
+                            <input type="file" id="imageInput" accept="image/*" hidden>
+                            <label for="imageInput" class="upload-label">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <span class="upload-text">Choose Image</span>
+                                <span class="upload-subtext">PNG, JPG, GIF up to 10MB</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Operations Card -->
+                <div class="card">
+                    <div class="card-content">
+                        <div class="tabs">
+                            <div class="tab-list">
+                                <button class="tab-trigger active" data-tab="hide">
+                                    <i class="fas fa-lock"></i> Hide Message
+                                </button>
+                                <button class="tab-trigger" data-tab="extract">
+                                    <i class="fas fa-key"></i> Extract Message
+                                </button>
+                            </div>
+
+                            <div class="tab-content active" id="hide-tab">
+                                <div class="form-group">
+                                    <label class="form-label">Secret Message</label>
+                                    <textarea id="messageInput" placeholder="Enter your secret message here..." class="textarea"></textarea>
+                                </div>
+                                <button id="hideButton" class="btn btn-primary" disabled>
+                                    <i class="fas fa-lock"></i>
+                                    Hide Message
+                                </button>
+                            </div>
+
+                            <div class="tab-content" id="extract-tab">
+                                <button id="extractButton" class="btn btn-success" disabled>
+                                    <i class="fas fa-key"></i>
+                                    Extract Message
+                                </button>
+
+                                <div id="extractedMessageArea" class="extracted-message-area" style="display: none;">
+                                    <div class="extracted-header">
+                                        <label class="form-label">Extracted Message</label>
+                                        <button id="toggleVisibility" class="btn-ghost">
+                                            <i class="fas fa-eye-slash" id="eyeIcon"></i>
+                                        </button>
+                                    </div>
+                                    <div class="extracted-content">
+                                        <p id="extractedMessage" class="extracted-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <!-- Original Image Preview -->
+                <div id="originalImageCard" class="card" style="display: none;">
+                    <div class="card-header">
+                        <h3 class="card-title">Original Image</h3>
+                    </div>
+                    <div class="card-content">
+                        <img id="originalImage" class="preview-image" alt="Original">
+                    </div>
+                </div>
+
+                <!-- Processed Image Preview -->
+                <div id="processedImageCard" class="card" style="display: none;">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Steganographic Image
+                            <button id="downloadButton" class="btn btn-purple">
+                                <i class="fas fa-download"></i>
+                                Download
+                            </button>
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <img id="processedImage" class="preview-image" alt="Processed">
+                        <p class="processed-info">This image contains your hidden message</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <span id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
